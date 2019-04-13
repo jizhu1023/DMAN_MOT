@@ -11,8 +11,7 @@ This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking w
 # Usage
 1. Download the [DMAN model](http) and put it into the "model/" folder.
 2. Run the socket server script:
-<pre><code>
-python calculate_similarity.py
+<pre><code>python calculate_similarity.py
 </code></pre>
 3. Run the socket client script DMAN_demo.m in Matlab.
 # Citation
