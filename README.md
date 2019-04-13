@@ -1,4 +1,4 @@
-# Online Multi-Object Tracking with Dual Matching Attention Networks
+# Online Multi-Object Tracking with DMANs
 
 This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking with Dual Matching Attention Networks". We integrate the ECO [1] for single object tracking. The code framework for MOT benefits from the MDP [2].
 
