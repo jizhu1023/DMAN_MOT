@@ -9,7 +9,7 @@ This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking w
 
 
 # Usage
-1. Download the [DMAN model](http) and put it into the "model/" folder.
+1. Download the [DMAN model](https://zhiyanapp-build-release.oss-cn-shanghai.aliyuncs.com/zhuji_file/spatial_temporal_attention_model.h5) and put it into the "model/" folder.
 2. Run the socket server script:
 <pre><code>python calculate_similarity.py
 </code></pre>
