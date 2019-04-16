@@ -3,7 +3,7 @@
 This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking with Dual Matching Attention Networks". We integrate the ECO [1] for single object tracking. The code framework for MOT benefits from the MDP [2].
 
 # Prerequisites
-- python 2.7
+- Python 2.7
 - Keras 2.0.5
 - Tensorflow 1.1.0
 
