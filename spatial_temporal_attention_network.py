@@ -78,7 +78,7 @@ def generate_model(weight_decay=0.0005):
 
     spatial_model = Model(inputs=merged_input, outputs=[y1, y2, x_concat]) # spatial attention model
     spatial_model.summary()
-    spatial_model.load_weights('/media/tensend/dish_disk/MOT_keras/weights_spatial_dot_softmax/my_weights_on_mot16_0_0_15.h5', by_name=True)
+    #spatial_model.load_weights('/media/tensend/dish_disk/MOT_keras/weights_spatial_dot_softmax/my_weights_on_mot16_0_0_15.h5', by_name=True) # fix the weights of the spatial attention network to train the temporal attention network
     for layer in spatial_model.layers[:]:
         layer.trainable = False
     spatial_model.layers[-2].trainable = True
