@@ -1,18 +1,17 @@
-# Online Multi-Object Tracking with Dual Matching Attention Networks
+# Online Multi-Object Tracking with DMANs
 
 This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking with Dual Matching Attention Networks". We integrate the ECO [1] for single object tracking. The code framework for MOT benefits from the MDP [2].
 
 # Prerequisites
-- python 2.7
+- Python 2.7
 - Keras 2.0.5
 - Tensorflow 1.1.0
 
 
 # Usage
-1. Download the [DMAN model](http) and put it into the "model/" folder.
+1. Download the [DMAN model](https://zhiyanapp-build-release.oss-cn-shanghai.aliyuncs.com/zhuji_file/spatial_temporal_attention_model.h5) and put it into the "model/" folder.
 2. Run the socket server script:
-<pre><code>
-python calculate_similarity.py
+<pre><code>python calculate_similarity.py
 </code></pre>
 3. Run the socket client script DMAN_demo.m in Matlab.
 # Citation
