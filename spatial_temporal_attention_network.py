@@ -28,7 +28,7 @@ def generate_model(weight_decay=0.0005):
     data1 = split1(merged_input)
     data2 = split2(merged_input)
 
-    base_model = ResNet50(weights='imagenet', include_top=False)
+    base_model = ResNet50(weights=None, include_top=False) # weights=None for test, weights='iamgenet' for train
     share_conv_1 = Model(input=base_model.input, output=base_model.get_layer('activation_49').output)
 
     x1 = share_conv_1(data1)
