@@ -125,3 +125,4 @@ dmypy.json
 .h5
 img_traj/*
 data/*
+model/*
