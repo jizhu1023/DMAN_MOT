@@ -7,6 +7,12 @@ This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking w
 - Keras 2.0.5
 - Tensorflow 1.1.0
 
+For example:
+<pre><code>conda create -n mot anaconda python=2.7
+conda activate mot
+pip install tensorflow-gpu==1.1.0
+pip install keras==2.0.5
+</code></pre>
 
 # Usage
 1. Download the [DMAN model](https://zhiyanapp-build-release.oss-cn-shanghai.aliyuncs.com/zhuji_file/spatial_temporal_attention_model.h5) and put it into the "model/" folder.
