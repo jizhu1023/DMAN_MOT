@@ -2,10 +2,12 @@ clear
 clc
 warning('off')
 
+% mat file for sharing data between the matlab and python programs
 if exist('mot_py.mat', 'file')
     delete('mot_py.mat');
 end
 
+% start the socket client
 global client_tcp
 client_tcp = tcpip('127.0.0.1', 65431, 'Timeout', 60,'OutputBufferSize',10240,'InputBufferSize',10240);
 fopen(client_tcp);
@@ -18,6 +20,7 @@ if ~exist(opt.results_dir)
     mkdir(opt.results_dir)
 end
 
+% determine whether running on the training set or test set
 is_train = true;
 
 % training and testing pairs

@@ -9,6 +9,9 @@ from keras import backend as K
 from os.path import expanduser
 from spatial_temporal_attention_network import generate_model
 import socket
+
+# determine whether runing on MOT training set or test set
+dataset = 'train' # or 'test'
  
 # communicate with the matlab program using the socket
 host = '127.0.0.1' 
@@ -16,9 +19,8 @@ port = 65431
 socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socket_tcp.bind((host, port))
 socket_tcp.listen(5)
+print('The python socket server is ready. Waiting for the signal from the matlab socket client ...')
 connection, adbboxess = socket_tcp.accept()
-
-dataset = 'train'
 
 try:
     K.set_learning_phase(0)

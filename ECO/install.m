@@ -23,6 +23,7 @@ else
 end
 
 % matconvnet
+%{
 if exist('external_libs/matconvnet/matlab', 'dir') == 7
     cd external_libs/matconvnet/matlab
 %     vl_compilenn;
@@ -45,3 +46,4 @@ if exist('external_libs/matconvnet/matlab', 'dir') == 7
 else
     warning('ECO:install', 'Matconvnet not found. Clone this submodule if you want to use CNN features. Skipping for now.')
 end
+%}

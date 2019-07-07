@@ -4,7 +4,7 @@ function opt = globals()
 opt.root = pwd;
 
 % path for MOT benchmark
-mot_paths = {'/home/tensend/data', ''};
+mot_paths = {'data/', ''};
 for i = 1:numel(mot_paths)
     if exist(mot_paths{i}, 'dir')
         opt.mot = mot_paths{i};

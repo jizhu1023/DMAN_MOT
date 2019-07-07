@@ -11,6 +11,7 @@ This is the implementation of our ECCV2018 paper "Online Multi-Object Tracking w
 For example:
 <pre><code>conda create -n mot anaconda python=2.7
 conda activate mot
+conda install -c menpo opencv
 pip install tensorflow-gpu==1.1.0
 pip install keras==2.0.5
 </code></pre>
