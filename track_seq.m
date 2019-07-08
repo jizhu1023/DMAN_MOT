@@ -168,20 +168,18 @@ for fr = 1:seq_len
         % reset tracker for the new object identity
         tracker.state = opt.STATE_START;            
         id = id + 1;
-        
-        trackers{end+1} = initialize_tracker(fr, frame_image, id, bboxes, index(i), tracker, opt);
+        trackers{end+1} = initialize_tracker(fr, frame_image, id, bboxes, index(i), tracker, opt);  
     end
-    
+
     % resolve tracker conflict
-    trackers = handle_conflicting_trackers(trackers, bboxes, opt);    
+    trackers = handle_conflicting_trackers(trackers, bboxes, opt);   
 
     bboxes_track = [];
     for i = 1:numel(trackers)
-        tracker = trackers{i};
         if isempty(bboxes_track)
-            bboxes_track = tracker.bboxes;
+            bboxes_track = trackers{i}.bboxes;
         else
-            bboxes_track = concatenate_bboxes(bboxes_track, tracker.bboxes);
+            bboxes_track = concatenate_bboxes(bboxes_track, trackers{i}.bboxes);
         end
     end
 

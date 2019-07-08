@@ -4,7 +4,7 @@ function tracker = MOT_track(frame_idx, frame_image, frame_size, bboxes, tracker
 if tracker.state == opt.STATE_TRACKED || tracker.state == opt.STATE_ACTIVATED
     tracker.num_occluded = 0;
     tracker.num_tracked = tracker.num_tracked + 1;
-    tracker = MDP_value(tracker, frame_idx, frame_image, bboxes, [], seq_name, opt);
+    tracker = track_frame(tracker, frame_idx, frame_image, bboxes, [], seq_name, opt);
 
     % check if target exits from the camera view
     [~, ov] = calc_overlap(tracker.bboxes, numel(tracker.bboxes.fr), frame_size, 1);

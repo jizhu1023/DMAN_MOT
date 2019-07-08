@@ -6,7 +6,7 @@ if tracker.state == opt.STATE_LOST
 
     % find a set of detections for association
     [bboxes_associate, index_det] = find_detections_for_association(tracker, fr, bboxes_associate, opt);
-    tracker = MDP_value(tracker, fr, frame_image, bboxes_associate, index_det, seq_name, opt);
+    tracker = track_frame(tracker, fr, frame_image, bboxes_associate, index_det, seq_name, opt);
     if tracker.state == opt.STATE_TRACKED || tracker.state == opt.STATE_ACTIVATED
         tracker.num_occluded = 0;
     end

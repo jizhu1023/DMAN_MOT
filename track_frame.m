@@ -100,17 +100,17 @@ function [tracker, qscore, f] = track_frame(tracker, frame_id, frame_image, bbox
                 fr_tracker = 1;
             end
             traj_dir = ['img_traj/' seq_name '/' num2str(tracker.target_id) '/'];
-            frame_id_double = double(frame_id)
+            frame_id_double = double(frame_id);
             save('mot_py.mat', 'traj_dir', 'bboxes', 'frame_id_double', 'seq_name');
             
             fwrite(client_tcp, 'client ok');
-            fread(client_tcp, 9); % size is 9 for 'server ok'
+            fread(client_tcp, 9); % size is 9 for 'server ok' message
             load('similarity.mat');
             
             [ass_score, ind] = max(similarity);
             index_tracked = find(tracker.bboxes.state == opt.STATE_TRACKED | tracker.bboxes.state == opt.STATE_ACTIVATED);
-            bboxes_tracked = sub_bboxes(tracker.bboxes, index_tracked)
-            fr_tracked = bboxes_tracked.fr(end)
+            bboxes_tracked = sub_bboxes(tracker.bboxes, index_tracked);
+            fr_tracked = bboxes_tracked.fr(end);
             if frame_id - fr_tracker == 1
                 prev_c = [bboxes_tracked.x(end) + bboxes_tracked.w(end) / 2, bboxes_tracked.y(end) + bboxes_tracked.h(end) / 2];
                 prev_w = bboxes_tracked.w(end);
