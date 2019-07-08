@@ -122,7 +122,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.h5
+*.mexa64
+*.h5
 img_traj/*
 data/*
 model/*
+results/*
