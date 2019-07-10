@@ -34,12 +34,14 @@ opt.exit_thre = 0.3;
 opt.initialization_thre = 0.25;
 opt.overlap_sup = 0.7;
 
+% scene context
 opt.backgrounds = cell(1,7);
-
+opt.backgrounds{1} = [240, 570, 540, 760; 1, 1, 1920, 400]; % [x1, y1, x2, y2]
+opt.backgrounds{2} = [1, 1, 155, 460; 1610, 670, 1710, 770; 700, 445, 760, 520; 1270, 210, 1360, 300; 1760, 900, 1830, 1040; 1455, 770, 1515, 890];
+opt.backgrounds{7} = [1, 1, 1920, 450];
 opt.h_max = cell(1,7);
 opt.h_max{2} = 315; 
 opt.h_min = cell(1,7);
-
 opt.fps = [30, 30, 14, 30, 30, 30, 25];
 
 % tracking state: START -> ACTIVATED -> TRACKED -> LOST -> STOP

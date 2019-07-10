@@ -24,9 +24,9 @@ end
 is_train = true;
 
 % training and testing pairs
-seq_len = numel(opt.mot2d_train_seqs);
+seq_num = numel(opt.mot2d_train_seqs);
 test_time = 0;
-for seq_idx = 1:seq_len
+for seq_idx = 1:seq_num
     % load tracker from file
     if is_train
         seq_name = opt.mot2d_train_seqs{seq_idx};

@@ -57,7 +57,7 @@ trackers = [];
 id = 0;
 for fr = 1:seq_len
     if is_print
-        fprintf('frame %d\n', fr);
+        fprintf('%s/%s frame %d\n', seq_set, seq_name, fr);
     else
         fprintf('.');
         if mod(fr, 100) == 0
@@ -74,40 +74,42 @@ for fr = 1:seq_len
     bboxes = sub_bboxes(bboxes_det, sub_idx);
 
     % Detection preprocessing based on the scene context
-    sub_idx = [];
-    for idx = 1:numel(bboxes.x)
-        FP_flag = 0;
-        % filter detections which are too large
-        if ~isempty(opt.h_max{seq_idx})
-            if bboxes.h(idx) > opt.h_max{seq_idx}
-                FP_flag = 1;
-            end
-        end
-
-        % filter detections which are too small
-        if ~isempty(opt.h_min{seq_idx})
-            if bboxes.h(idx) < opt.h_min{seq_idx}
-                FP_flag = 1;
-            end
-        end
-
-        % filter detections in impossible locations
-        if ~isempty(opt.backgrounds{seq_idx})
-            cx_det = bboxes.x(idx) + bboxes.w(idx) / 2; % center x of the detection
-            cy_det = bboxes.y(idx) + bboxes.h(idx) / 2; % center y of the detection
-            for bg_idx = 1:size(opt.backgrounds{seq_idx}, 1)
-                bg = opt.backgrounds{seq_idx}(bg_idx,:);
-                if cx_det > bg(1) && cx_det < bg(3) && cy_det > bg(2) && cy_det < bg(4)
+    if strcmp(seq_set, 'test')
+        sub_idx = [];
+        for idx = 1:numel(bboxes.x)
+            FP_flag = 0;
+            % filter detections which are too large to be pedestrians
+            if ~isempty(opt.h_max{seq_idx})
+                if bboxes.h(idx) > opt.h_max{seq_idx}
                     FP_flag = 1;
-                    continue;
                 end
             end
+
+            % filter detections which are too small to be pedestrians
+            if ~isempty(opt.h_min{seq_idx})
+                if bboxes.h(idx) < opt.h_min{seq_idx}
+                    FP_flag = 1;
+                end
+            end
+
+            % filter detections in impossible locations
+            if ~isempty(opt.backgrounds{seq_idx})
+                cx_det = bboxes.x(idx) + bboxes.w(idx) / 2; % center x of the detection
+                cy_det = bboxes.y(idx) + bboxes.h(idx) / 2; % center y of the detection
+                for bg_idx = 1:size(opt.backgrounds{seq_idx}, 1)
+                    bg = opt.backgrounds{seq_idx}(bg_idx,:);
+                    if cx_det > bg(1) && cx_det < bg(3) && cy_det > bg(2) && cy_det < bg(4)
+                        FP_flag = 1;
+                        continue;
+                    end
+                end
+            end
+            if FP_flag == 0
+                sub_idx = [sub_idx, idx];
+            end
         end
-        if FP_flag == 0
-            sub_idx = [sub_idx, idx];
-        end
+        bboxes = sub_bboxes(bboxes, sub_idx);
     end
-    bboxes = sub_bboxes(bboxes, sub_idx);
     
     % nms
      boxes = [bboxes.x bboxes.y bboxes.x+bboxes.w bboxes.y+bboxes.h bboxes.r];

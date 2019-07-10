@@ -11,8 +11,11 @@ function [tracker, qscore, f] = track_frame(tracker, frame_id, frame_image, bbox
         tracker.bb = tracker.eco.bb';
         qscore = 0;
         if is_tracking_score_good == 1
-            overlap_threshold = 0.5;
-    
+            if seq_name == 'MOT16-03'
+                overlap_threshold = 0.1;
+            else
+                overlap_threshold = 0.8;
+            end  
             if tracker.state == opt.STATE_TRACKED && is_overlap_ratio_good > overlap_threshold
                 label = 1;
             elseif tracker.state == opt.STATE_ACTIVATED %&& is_overlap_ratio_good > 0.8
